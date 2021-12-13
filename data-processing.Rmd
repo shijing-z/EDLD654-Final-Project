@@ -7,7 +7,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r}
+```{r setup, include=FALSE}
 library(tidyverse)
 library(randomForest)
 library(ISLR)
