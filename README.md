@@ -17,7 +17,7 @@ Two datasets related to red and white vinho verde wine samples, from the north o
 
 Link to the data:
 ```
-wine_red <- readr::read_csv("https://raw.githubusercontent.com/shijing-z/EDLD654-Final-Project/main/winequality-red.csv")
+wine_red <- readr::read_csv("https://raw.githubusercontent.com/shijing-z/EDLD654-Final-Project/main/data/winequality-red.csv")
 ```
 
 ### Relevant Papers:
