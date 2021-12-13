@@ -9,6 +9,7 @@ author:
 affiliation:
   - id            : "1"
     institution   : "University of Oregon"
+note: https://github.com/shijing-z/EDLD654-Final-Project.git
 floatsintext      : no
 figurelist        : no
 tablelist         : no
