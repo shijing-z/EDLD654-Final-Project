@@ -1,0 +1,511 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  english,
+  man]{apa6}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Predicting Red Wine Quality with Different Models},
+  pdfauthor={Shijing Zhou1},
+  pdflang={en-EN},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+% Manuscript styling
+\usepackage{upgreek}
+\captionsetup{font=singlespacing,justification=justified}
+
+% Table formatting
+\usepackage{longtable}
+\usepackage{lscape}
+% \usepackage[counterclockwise]{rotating}   % Landscape page setup for large tables
+\usepackage{multirow}		% Table styling
+\usepackage{tabularx}		% Control Column width
+\usepackage[flushleft]{threeparttable}	% Allows for three part tables with a specified notes section
+\usepackage{threeparttablex}            % Lets threeparttable work with longtable
+
+% Create new environments so endfloat can handle them
+% \newenvironment{ltable}
+%   {\begin{landscape}\centering\begin{threeparttable}}
+%   {\end{threeparttable}\end{landscape}}
+\newenvironment{lltable}{\begin{landscape}\centering\begin{ThreePartTable}}{\end{ThreePartTable}\end{landscape}}
+
+% Enables adjusting longtable caption width to table width
+% Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
+\makeatletter
+\newcommand\LastLTentrywidth{1em}
+\newlength\longtablewidth
+\setlength{\longtablewidth}{1in}
+\newcommand{\getlongtablewidth}{\begingroup \ifcsname LT@\roman{LT@tables}\endcsname \global\longtablewidth=0pt \renewcommand{\LT@entry}[2]{\global\advance\longtablewidth by ##2\relax\gdef\LastLTentrywidth{##2}}\@nameuse{LT@\roman{LT@tables}} \fi \endgroup}
+
+% \setlength{\parindent}{0.5in}
+% \setlength{\parskip}{0pt plus 0pt minus 0pt}
+
+% \usepackage{etoolbox}
+\makeatletter
+\patchcmd{\HyOrg@maketitle}
+  {\section{\normalfont\normalsize\abstractname}}
+  {\section*{\normalfont\normalsize\abstractname}}
+  {}{\typeout{Failed to patch abstract.}}
+\patchcmd{\HyOrg@maketitle}
+  {\section{\protect\normalfont{\@title}}}
+  {\section*{\protect\normalfont{\@title}}}
+  {}{\typeout{Failed to patch title.}}
+\makeatother
+\shorttitle{Predicting Wine Quality}
+\DeclareDelayedFloatFlavor{ThreePartTable}{table}
+\DeclareDelayedFloatFlavor{lltable}{table}
+\DeclareDelayedFloatFlavor*{longtable}{table}
+\makeatletter
+\renewcommand{\efloat@iwrite}[1]{\immediate\expandafter\protected@write\csname efloat@post#1\endcsname{}}
+\makeatother
+\usepackage{lineno}
+
+\linenumbers
+\usepackage{csquotes}
+\ifxetex
+  % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
+  \usepackage{polyglossia}
+  \setmainlanguage[]{english}
+\else
+  \usepackage[main=english]{babel}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\fi
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#2\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\title{Predicting Red Wine Quality with Different Models}
+\author{Shijing Zhou\textsuperscript{1}}
+\date{}
+
+
+\affiliation{\vspace{0.5cm}\textsuperscript{1} University of Oregon}
+
+\begin{document}
+\maketitle
+
+\hypertarget{research-problem}{%
+\section{Research Problem}\label{research-problem}}
+
+Wine Quality Data Set is obtained from UCI \href{https://archive.ics.uci.edu/ml/datasets/wine+quality}{Machine Learning Repository}. The website contains two datasets, which are related to red and while wines sample from vinho verde, which is from the north of Portugal (Cortez et al., 2009). For this project, only data on the red wine samples were used to create models. The aim of the project is to use physicochemical data of wine to predict the quality of wine. Building a model of predicting red wine quality from objective data could potentially not only help to establish wine tasting guideline from the perspective of merchants and consumers, but also help to improve wine production from the perspective of winery as the producer.
+
+\hypertarget{description-of-the-data}{%
+\section{Description of the Data}\label{description-of-the-data}}
+
+\hypertarget{core-features-and-descriptive-statistics}{%
+\subsection{Core features and descriptive statistics}\label{core-features-and-descriptive-statistics}}
+
+The dataset contains a total of 12 variables. The outcome of interest is wine quality (\texttt{quality}). There are also physicochemical measures of red wine samples, including fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates, alcohol.
+
+\begin{verbatim}
+##                      vars    n  mean    sd  min    max  range   se
+## fixed acidity           1 1599  8.32  1.74 4.60  15.90  11.30 0.04
+## volatile acidity        2 1599  0.53  0.18 0.12   1.58   1.46 0.00
+## citric acid             3 1599  0.27  0.19 0.00   1.00   1.00 0.00
+## residual sugar          4 1599  2.54  1.41 0.90  15.50  14.60 0.04
+## chlorides               5 1599  0.09  0.05 0.01   0.61   0.60 0.00
+## free sulfur dioxide     6 1599 15.87 10.46 1.00  72.00  71.00 0.26
+## total sulfur dioxide    7 1599 46.47 32.90 6.00 289.00 283.00 0.82
+## density                 8 1599  1.00  0.00 0.99   1.00   0.01 0.00
+## pH                      9 1599  3.31  0.15 2.74   4.01   1.27 0.00
+## sulphates              10 1599  0.66  0.17 0.33   2.00   1.67 0.00
+## alcohol                11 1599 10.42  1.07 8.40  14.90   6.50 0.03
+## quality                12 1599  5.64  0.81 3.00   8.00   5.00 0.02
+\end{verbatim}
+
+\hypertarget{missing-data-check}{%
+\subsection{Missing data check}\label{missing-data-check}}
+
+No missingness was found for the variables in the dataset.
+
+\begin{verbatim}
+##                         n missing_percent
+## fixed.acidity        1599             0.0
+## volatile.acidity     1599             0.0
+## citric.acid          1599             0.0
+## residual.sugar       1599             0.0
+## chlorides            1599             0.0
+## free.sulfur.dioxide  1599             0.0
+## total.sulfur.dioxide 1599             0.0
+## density              1599             0.0
+## pH                   1599             0.0
+## sulphates            1599             0.0
+## alcohol              1599             0.0
+## quality              1599             0.0
+\end{verbatim}
+
+\hypertarget{outcome-transformation}{%
+\subsection{Outcome transformation}\label{outcome-transformation}}
+
+As a consumer, I may consider \texttt{quality} as a key binary outcome (i.e., good or bad) for my decision on which wine I should buy. Hence, it makes sense to transform the variable, \texttt{quality}, to a categorical variable with binary outcomes (i.e., 1 = Good, 0 = Bad).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wine}\SpecialCharTok{$}\NormalTok{quality }\OtherTok{\textless{}{-}} \FunctionTok{I}\NormalTok{(wine}\SpecialCharTok{$}\NormalTok{quality }\SpecialCharTok{\textgreater{}} \DecValTok{6}\NormalTok{) }\SpecialCharTok{*} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{description-of-the-models}{%
+\section{Description of the models}\label{description-of-the-models}}
+
+Three different modeling approaches will be used to predict quality of wine from 11 physicochemical measures of wine, including Logistic Regression, Classification Trees, and Random Forest.
+Since the aim of the project is to develop a tool that could be used by both consumers, merchants, and winery, it make sense to treat the outcome of interest, \texttt{quality}, as binary and run a logistic regression with other continuous physicochemical variables. It is always good to run a generalized linear model (GLM) as a baseline to compare with other more advanced models.
+For classification tree, it is a advanced tool for outcome prediction. Also, for winery as the producer of wine, decision trees may help them to find and prioritize the most important factors for wine quality during production.
+Random Forests is a even more advanced tool using bootstrap (i.e., random sample of rows in training dataset with replacement) to predict more unbiased outcomes.\\
+For all models, I am planning to use Area Under the Receiver Operating Curve (AUC or AUROC) and True Positive Rate (TPN) to evaluate those models. For the outcome of interest with different perspectives from winery, merchants, and consumers, it makes the most sense to see how well the model does to predict good quality wine when the wine is really good, because it is related to the profit of winery and merchants, and consumer experience experience.
+
+\hypertarget{model-fits}{%
+\section{Model Fits}\label{model-fits}}
+
+\hypertarget{preparation}{%
+\subsection{Preparation}\label{preparation}}
+
+The dataset is split into training and test set with the following code. The training set has 1,000 observations, and the test set has 599 observations. I also prepared a function to easy calculate TNR for each model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{8}\NormalTok{) }
+\NormalTok{X }\OtherTok{\textless{}{-}} \FunctionTok{scale}\NormalTok{(wine[,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{11}\NormalTok{])}
+\NormalTok{tst }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{599}
+\NormalTok{train }\OtherTok{\textless{}{-}}\NormalTok{ wine[}\SpecialCharTok{{-}}\NormalTok{tst,]}
+\NormalTok{test }\OtherTok{\textless{}{-}}\NormalTok{ wine[tst,]}
+
+\CommentTok{\# Function to calculate True Postive Rate (TPR)}
+\NormalTok{TPR }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(y,yhat)  \{ }\FunctionTok{sum}\NormalTok{(y}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ yhat}\SpecialCharTok{==}\DecValTok{1}\NormalTok{) }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(y}\SpecialCharTok{==}\DecValTok{1}\NormalTok{) \}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{model-1-logistic-regression}{%
+\subsection{Model 1: Logistic Regression}\label{model-1-logistic-regression}}
+
+The logistic regression indicated a TRP of 21.33\%, and a AUC of 87.22\%.
+
+\begin{verbatim}
+##    
+##     FALSE TRUE
+##   0   503   21
+##   1    59   16
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 0.2133333
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## roc.default(response = test$quality, predictor = test$yhat.glm,     direction = "<")
+## 
+## Data: test$yhat.glm in 524 controls (test$quality 0) < 75 cases (test$quality 1).
+## Area under the curve: 0.8722
+\end{verbatim}
+
+\hypertarget{model-2-decision-tree}{%
+\subsection{Model 2: Decision Tree}\label{model-2-decision-tree}}
+
+The classification trees model after pruning indicated a TRP of 55.26\%, and a AUC of 79.51\%.
+
+\hypertarget{classification-trees-1}{%
+\subsubsection{Classification trees 1}\label{classification-trees-1}}
+
+A explorotory classification trees model
+
+\includegraphics{report_files/figure-latex/unnamed-chunk-6-1.pdf} \includegraphics{report_files/figure-latex/unnamed-chunk-6-2.pdf}
+
+\begin{verbatim}
+## 
+## Classification tree:
+## rpart(formula = form1, data = train, method = "class", cp = 0.001)
+## 
+## Variables actually used in tree construction:
+##  [1] alcohol              chlorides            citric acid         
+##  [4] density              fixed acidity        free sulfur dioxide 
+##  [7] pH                   residual sugar       sulphates           
+## [10] total sulfur dioxide volatile acidity    
+## 
+## Root node error: 142/1000 = 0.142
+## 
+## n= 1000 
+## 
+##           CP nsplit rel error  xerror     xstd
+## 1  0.0774648      0   1.00000 1.00000 0.077732
+## 2  0.0563380      2   0.84507 0.96479 0.076573
+## 3  0.0422535      3   0.78873 0.92254 0.075138
+## 4  0.0246479      4   0.74648 0.92254 0.075138
+## 5  0.0211268      6   0.69718 0.89437 0.074152
+## 6  0.0176056     10   0.61268 0.88732 0.073901
+## 7  0.0105634     14   0.54225 0.92958 0.075380
+## 8  0.0070423     16   0.52113 0.93662 0.075622
+## 9  0.0010060     17   0.51408 0.99296 0.077503
+## 10 0.0010000     24   0.50704 1.02817 0.078635
+\end{verbatim}
+
+\hypertarget{classification-trees-2}{%
+\subsubsection{Classification trees 2}\label{classification-trees-2}}
+
+A new \texttt{cp} value is used in classification tree model 2 based on the classification tree model 1. The new \texttt{cp} value for the second tree model is based on the value of relative error, x error, xstd. When nsplit = 10, all error values are at their lowest.
+
+\includegraphics{report_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{verbatim}
+##        
+##           0   1
+##   FALSE 507  54
+##   TRUE   17  21
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 0.5526316
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## roc.default(response = test$quality, predictor = yhat.t2, direction = "<")
+## 
+## Data: yhat.t2 in 524 controls (test$quality 0) < 75 cases (test$quality 1).
+## Area under the curve: 0.7915
+\end{verbatim}
+
+\hypertarget{model-3-random-forest}{%
+\subsection{Model 3: Random Forest}\label{model-3-random-forest}}
+
+The Ramdom Forest model indicated a TRP of 80\%, and a AUC of 86.54\%.
+
+\begin{verbatim}
+## 
+## Call:
+##  randomForest(x = X, y = Y, ntree = ntree, mtry = mtry, importance = TRUE) 
+##                Type of random forest: classification
+##                      Number of trees: 1000
+## No. of variables tried at each split: 3
+## 
+##         OOB estimate of  error rate: 8.7%
+## Confusion matrix:
+##     0  1 class.error
+## 0 832 26  0.03030303
+## 1  61 81  0.42957746
+\end{verbatim}
+
+\begin{verbatim}
+##                 Length Class  Mode     
+## call               6   -none- call     
+## type               1   -none- character
+## predicted       1000   factor numeric  
+## err.rate        3000   -none- numeric  
+## confusion          6   -none- numeric  
+## votes           2000   matrix numeric  
+## oob.times       1000   -none- numeric  
+## classes            2   -none- character
+## importance        44   -none- numeric  
+## importanceSD      33   -none- numeric  
+## localImportance    0   -none- NULL     
+## proximity          0   -none- NULL     
+## ntree              1   -none- numeric  
+## mtry               1   -none- numeric  
+## forest            14   -none- list     
+## y               1000   factor numeric  
+## test               0   -none- NULL     
+## inbag              0   -none- NULL
+\end{verbatim}
+
+\begin{verbatim}
+##  [1] "call"            "type"            "predicted"       "err.rate"       
+##  [5] "confusion"       "votes"           "oob.times"       "classes"        
+##  [9] "importance"      "importanceSD"    "localImportance" "proximity"      
+## [13] "ntree"           "mtry"            "forest"          "y"              
+## [17] "test"            "inbag"
+\end{verbatim}
+
+\begin{verbatim}
+##                             0        1 MeanDecreaseAccuracy MeanDecreaseGini
+## fixed acidity        16.10640 19.40485             25.17405         16.15569
+## volatile acidity     14.67521 38.26160             36.17579         28.56329
+## citric acid          14.05525 30.46566             32.68994         21.72569
+## residual sugar       20.69442 23.17121             29.01399         15.66553
+## chlorides            22.29886 27.02336             33.71803         18.64078
+## free sulfur dioxide  18.27226 20.25460             26.34248         14.61407
+## total sulfur dioxide 19.05263 34.14284             31.46893         19.71107
+## density              22.54147 35.11311             36.75894         26.72439
+## pH                   13.35736 22.92480             23.86168         15.34353
+## sulphates            16.45267 54.22843             45.94490         28.13688
+## alcohol              22.12729 50.92340             49.48475         38.30781
+\end{verbatim}
+
+\includegraphics{report_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{verbatim}
+##         
+## pred.rf1   0   1
+##        0 519  59
+##        1   5  16
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 0.7619048
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## roc.default(response = test$quality, predictor = yhat.rf1, direction = "<")
+## 
+## Data: yhat.rf1 in 524 controls (test$quality 0) < 75 cases (test$quality 1).
+## Area under the curve: 0.8604
+\end{verbatim}
+
+\hypertarget{plot-of-model-comparison}{%
+\subsection{Plot of Model Comparison}\label{plot-of-model-comparison}}
+
+Based on TPR and AUC, it seems that Random Forest model did an outstanding job to predict the outcome. However, based on ROC curves (i.e., trade-off between TPR (sensitivity) and TNR (specificity)), it looks that the Random Forest model performed just slightly better than the logistic regression model, and the worst performed model seems to be classification trees (after pruning) model. Hence, I would choose Random Forest model as the optimal model to predict wine quality from from physicochemical data of wine with the comparisions and results described above.
+See the following plot for model comparison.
+
+\includegraphics{report_files/figure-latex/unnamed-chunk-9-1.pdf} \includegraphics{report_files/figure-latex/unnamed-chunk-9-2.pdf} \includegraphics{report_files/figure-latex/unnamed-chunk-9-3.pdf}
+
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
+
+The three different models definitely gave me different results on predicting powder depending on different method of evaluation. If I only consider TPR and AUC for my model performance, the random forest model is outstanding compared the rest of models, but the random forest model seemed to perform similarly if I also take True Negative Rate (TNR) into consideration.
+
+In the random forest model, it looks like \texttt{alcohol} was the most important predictor for the outcome, \texttt{quality}. This is certainly surprising for me. I thought factors such as pH levels and residual sugar matter more regarding the taste. However, I realized that wine quality is not all about taste. Color, smell, how wine looks from different angles of glass, and how wine swirls in a glass also matter to wine quality. I think this is very informative, mostly for winery as the producer of wine, to focus on how alcohol plays a role in production to improve their products.
+
+\newpage
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+
+Cortez, P., Cerdeira, A., Almeida, F., Matos, T., \& Reis, J. (2009). Modeling wine preferences by data mining from physicochemical properties. Decision Support Systems, 47(4), 547--553. \url{https://doi.org/10.1016/j.dss.2009.05.016}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{0}{0}
+\end{CSLReferences}
+
+\endgroup
+
+
+\end{document}
