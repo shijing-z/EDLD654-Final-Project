@@ -22,9 +22,7 @@ wine_red <- readr::read_csv("https://raw.githubusercontent.com/shijing-z/EDLD654
 
 ### Relevant Papers:
 
-P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis. Modeling wine preferences by data mining from physicochemical properties.
-
-In Decision Support Systems, Elsevier, 47(4):547-553, 2009.
+P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis. Modeling wine preferences by data mining from physicochemical properties. In Decision Support Systems, Elsevier, 47(4):547-553, 2009.
 
 ## Attribute Information:
 
