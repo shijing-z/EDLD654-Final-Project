@@ -22,7 +22,7 @@ library(gbm)
 
 ## Data Import
 ```{r}
-wine <- readr::read_csv("https://raw.githubusercontent.com/shijing-z/EDLD654-Final-Project/main/winequality-red.csv")
+wine <- readr::read_csv("https://raw.githubusercontent.com/shijing-z/EDLD654-Final-Project/main/data/winequality-red.csv")
 ```
 
 ## Transform a continous outcome into a binary outcome
