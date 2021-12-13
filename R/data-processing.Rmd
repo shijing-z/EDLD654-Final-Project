@@ -32,10 +32,10 @@ wine$quality <- I(wine$quality > 6) * 1
 # 0 = Bad quality
 ```
 
-## Slip training and test dataset 
+## Split training and test dataset 
 
 ```{r}
-set.seed(8) 
+set.seed(960604) 
 X <- scale(wine[,1:11])
 tst <- 1:599
 train <- wine[-tst,]
